@@ -1,4 +1,4 @@
-### 常用命令
+# 一、常用命令
 |    命令   |	描述		|
 |:-----------------|:--------------------:|
 | git clone [url]|将远程仓库的代码克隆到当前目录|
@@ -35,3 +35,74 @@
 |||
 |git merge develop |将develop 分支合并到当前分支
 |git tag v1.0| 将当前分支新建一个标签
+
+# 二、多人协作
+
+A 开发 添加一段代码 
+1. git add .
+2. git commit -m '添加一段代码'
+3. git pull origin <branchName>
+4. git push origin <branchName>
+
+B 开发 添加两端代码  
+1. git add .
+2. git commit -m '添加两端代码 '
+3. git pull origin <branchName>
+4. 如果有冲突，解决冲突后 git commit -m '合并冲突'
+5. git push origin <branchName>
+
+# 三、常用分支
+
+- master  : 永远处在即将发布状态  
+- develop : 最新的开发状态  
+- release : 准备要发布版本的分支, 用来修复 bug, 基于 develop, 完成后	 merge 回 develop 和 master
+- feature : 开发新功能的分支 ，基于 develop 完成后 merge 回 develop 
+- hotfix  : 修复线上 bug 基于 master ，修复后 merge 回 develop、master  
+
+> master、develop 用于存在，其他分支可根据情况临时 新建 或 移除
+
+# 四、实践
+背景：一个项目负责人 X 先生，两个程序员 A 和 B
+
+### 4.1: 开发新功能
+第一步：X 先生
+1. git checkout develop ( 新功能一定要基于 develop 分支 )
+2. git branch featureA ( 新建一个分支用来开发新功能 )
+3. git push origin featureA （ 新分支推上去 ）
+4. 通知 A、B 拉 featureA 这个分支，并在上面开发新功能  
+
+第二步：A、B 
+1. git pull && git checkout featureA ( 拉、并切换到 featureA 分支 )
+2. 开发新功能 按照《多人协作》的步骤 -> 将代码 push 到 featureA 分支
+与此同于 X 先生 、A、B、都可以基于 featureA 打测试包, 直到 featureA 基本没有 bug
+
+第三步：X 先生
+1. git checkout develop
+2. git merge featureA ( 合并的时候如果有冲突，可以一起看下这个冲突，并解决 )
+3. git branch -D featureA ( 删除这个分支 )  
+3. 可以基于 develop 打测试包
+
+### 4.2: 此时状态：已经是基本没什么问题，但是进行最后的测试时，发现 bug
+1. git checkout develop ( 一定要基于 develop 分支 )
+2. git branch release ( 新建一个分支用来修复 bug )  
+3. git pull && git checkout release  
+4. 修bug、测试、修bug、测试。。。。直到测试ok达到了发布的标准
+5. git checkout develop | git merge release
+6. git checkout master  | git merge release
+7. 基于 master 打包发布
+
+### 4.3: 出现紧急bug
+1. git checkout master 
+2. git branch hotfix 
+3. git pull && git checkout hotfix  
+4. 修bug、测试、修bug、测试。。。。直到测试ok达到了发布的标准
+5. git checkout develop | git merge hotfix
+6. git checkout master  | git merge hotfix
+7. 基于 master 打包发布
+
+### 4.4: 情景再现：新功能正在开发中，需要在没有新功能的代码上修bug、和小需求修改后上线
+一定要基于 develop 分支，必须合并到 develop master
+
+### 4.5
+- TVLive 替换网络请求库
+- 重构某一个模块 
