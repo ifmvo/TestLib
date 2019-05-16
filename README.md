@@ -83,7 +83,7 @@ git push origin <branchName>
 第三步：X 先生
 1. git checkout develop
 2. git merge featureA ( 合并的时候如果有冲突，可以一起看下这个冲突，并解决 )
-3. git branch -D featureA ( 删除这个分支 )  
+3. git branch -D featureA (  *删除这个分支之前，确认A、B已经没有需要提交的代码* *一定要通知这个分支所有的相关人员* )  
 3. 可以基于 develop 打测试包
 
 ### 4.2: 此时状态：已经是基本没什么问题，但是进行最后的测试时，发现 bug
