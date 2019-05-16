@@ -38,13 +38,13 @@
 
 # 二、多人协作
 
-A 开发 添加一段代码 
+- A 开发 添加一段代码 
 1. git add .
 2. git commit -m '添加一段代码'
 3. git pull origin <branchName>
 4. git push origin <branchName>
 
-B 开发 添加两端代码  
+- B 开发 添加两端代码  
 1. git add .
 2. git commit -m '添加两端代码 '
 3. git pull origin <branchName>
