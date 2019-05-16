@@ -38,18 +38,22 @@
 
 # 二、多人协作
 
-- A 开发 添加一段代码 
-1. git add .
-2. git commit -m '添加一段代码'
-3. git pull origin <branchName>
-4. git push origin <branchName>
+A 开发 添加一段代码 
+``
+git add .
+git commit -m '添加一段代码'
+git pull origin <branchName>
+git push origin <branchName>
+``
 
-- B 开发 添加两端代码  
-1. git add .
-2. git commit -m '添加两端代码 '
-3. git pull origin <branchName>
-4. 如果有冲突，解决冲突后 git commit -m '合并冲突'
-5. git push origin <branchName>
+B 开发 添加两端代码 
+``
+git add .
+git commit -m '添加两端代码 '
+git pull origin <branchName>
+如果有冲突，解决冲突后 git commit -m '合并冲突'
+git push origin <branchName>
+``
 
 # 三、常用分支
 
