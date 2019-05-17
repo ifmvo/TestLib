@@ -70,23 +70,30 @@ git push origin <branchName>
 
 ### 4.1: 开发新功能
 第一步：X 先生
+```
 1. git checkout develop ( 新功能一定要基于 develop 分支 )
 2. git branch featureA ( 新建一个分支用来开发新功能 )
 3. git push origin featureA （ 新分支推上去 ）
 4. 通知 A、B 拉 featureA 这个分支，并在上面开发新功能  
+```
 
 第二步：A、B 
+```
 1. git pull && git checkout featureA ( 拉、并切换到 featureA 分支 )
 2. 开发新功能 按照《多人协作》的步骤 -> 将代码 push 到 featureA 分支
 与此同于 X 先生 、A、B、都可以基于 featureA 打测试包, 直到 featureA 基本没有 bug
+```
 
 第三步：X 先生
+```
 1. git checkout develop
 2. git merge featureA ( 合并的时候如果有冲突，可以一起看下这个冲突，并解决 )
 3. git branch -D featureA (  *删除这个分支之前，确认A、B已经没有需要提交的代码* *一定要通知这个分支所有的相关人员* )  
 3. 可以基于 develop 打测试包
+```
 
 ### 4.2: 此时状态：已经是基本没什么问题，但是进行最后的测试时，发现 bug
+```
 1. git checkout develop ( 一定要基于 develop 分支 )
 2. git branch release ( 新建一个分支用来修复 bug )  
 3. git pull && git checkout release  
@@ -94,8 +101,10 @@ git push origin <branchName>
 5. git checkout develop | git merge release
 6. git checkout master  | git merge release
 7. 基于 master 打包发布
+```
 
 ### 4.3: 出现紧急bug
+```
 1. git checkout master 
 2. git branch hotfix 
 3. git pull && git checkout hotfix  
@@ -103,10 +112,15 @@ git push origin <branchName>
 5. git checkout develop | git merge hotfix
 6. git checkout master  | git merge hotfix
 7. 基于 master 打包发布
+```
 
 ### 4.4: 情景再现：新功能正在开发中，需要在没有新功能的代码上修bug、和小需求修改后上线
+```
 一定要基于 develop 分支，必须合并到 develop master
+```
 
 ### 4.5
+```
 - TVLive 替换网络请求库
 - 重构某一个模块 
+```
