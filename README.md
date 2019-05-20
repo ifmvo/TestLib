@@ -37,7 +37,7 @@
 |git merge develop |将develop 分支合并到当前分支
 |git tag v1.0| 将当前分支新建一个标签
 
-# 二、多人协作
+# 二、基本提交流程
 
 A 开发 添加一段代码 
 ```
@@ -80,7 +80,7 @@ git push origin <branchName>
 
 第二步：A、B 
 ```
-1. git pull && git checkout featureA ( 拉、并切换到 featureA 分支 )
+1. git pull && git checkout featureA ( 拉取代码、并切换到 featureA 分支 )
 2. 开发新功能 按照《多人协作》的步骤 -> 将代码 push 到 featureA 分支
 与此同于 X 先生 、A、B、都可以基于 featureA 打测试包, 直到 featureA 基本没有 bug
 ```
@@ -92,6 +92,7 @@ git push origin <branchName>
 3. git branch -D featureA (  *删除这个分支之前，确认A、B已经没有需要提交的代码* *一定要通知这个分支所有的相关人员* )  
 3. 可以基于 develop 打测试包
 ```
+> 为什么要开一个新的分支去开发新的功能？
 
 ### 4.2: 此时状态：已经是基本没什么问题，但是进行最后的测试时，发现 bug
 ```
@@ -115,13 +116,14 @@ git push origin <branchName>
 7. 基于 master 打包发布
 ```
 
-### 4.4: 情景再现：新功能正在开发中，需要在没有新功能的代码上修bug、和小需求修改后上线
+### 4.4: 情景再现
 ```
-一定要基于 develop 分支，必须合并到 develop master
+- 今日影视：新版API接入的同时，需要根据旧版API的代码改bug、新增需求后更新版本，同时代码更新到新版API的代码
+- 闪电下载器：需要接入新的链接过滤 SDK，但是有可能还要还原回旧的过滤方式
 ```
 
-### 4.5
-```
-- TVLive 替换网络请求库
-- 重构某一个模块 
-```
+# 五、注意事项
+push 之前没有 pull
+
+# 六、扩展
+利用 Github 将 Module 以依赖的方式接入项目
